@@ -14,9 +14,11 @@ jobs:
     docker:
       - image: circleci/node:8.10
     steps:
-      # ...Install dependencies, run tests, etc.
-      # Finally, use the 'deploy/store-lambda' task to package
-      # the working directory to a zip & persist it for deploys.
+      # Install dependencies, run tests, etc:
+      # - ...
+
+      # Finally, use the 'lambda/store' task to package the
+      # working directory to a zip & persist it for deploys.
       - lambda/store
 
 # Then, configure workflows by chaining the app-specific 'build'
