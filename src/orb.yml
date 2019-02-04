@@ -4,7 +4,7 @@ description: |
   Shared deployment steps for DoSomething.org apps.
 
 jobs:
-  deploy-lambda:
+  deploy:
     parameters:
       app:
         description: "The application name, used to resolve S3 bucket & Lambda function."
@@ -25,7 +25,7 @@ jobs:
       - lambda
 
 commands:
-  store-lambda:
+  store:
     parameters:
       working_directory:
         description: "The working directory, used to persist assets between jobs."

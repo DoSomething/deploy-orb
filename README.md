@@ -18,7 +18,7 @@ jobs:
       # ...Install dependencies, run tests, etc.
       # Finally, use the 'deploy/store-lambda' task to package
       # the working directory to a zip & persist it for deploys.
-      - deploy/store-lambda
+      - deploy/store
           working_directory: ~/app
 
 # Then, configure workflows by chaining the app-specific 'build'
