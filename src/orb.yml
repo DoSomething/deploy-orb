@@ -12,7 +12,7 @@ jobs:
       working_directory:
         description: "The working directory, used to persist assets between jobs."
         type: string
-        default: ~/app
+        default: ~/project
     docker:
       - image: circleci/python:3.6
     working_directory: "<<parameters.working_directory>>"
@@ -30,7 +30,7 @@ commands:
       working_directory:
         description: "The working directory, used to persist assets between jobs."
         type: string
-        default: ~/app
+        default: ~/project
     steps:
       - run:
           name: Compress source

@@ -7,19 +7,17 @@ To use this orb, try:
 version: 2.1
 
 orbs:
-  deploy: dosomething/lambda@0.0.1
+  lambda: dosomething/lambda@0.0.3
 
 jobs:
   build:
     docker:
       - image: circleci/node:8.10
-    working_directory: ~/app
     steps:
       # ...Install dependencies, run tests, etc.
       # Finally, use the 'deploy/store-lambda' task to package
       # the working directory to a zip & persist it for deploys.
-      - deploy/store
-          working_directory: ~/app
+      - lambda/store
 
 # Then, configure workflows by chaining the app-specific 'build'
 # and our standardized 'lambda/deploy' job. Here's an example that
@@ -37,11 +35,10 @@ workflows:
             - deploy-qa
           filters:
             branches:
-              only: circleci-workflow
+              only: master
       - lambda/deploy:
           name: deploy-dev
           app: dosomething-graphql-dev # <--- replace with your app name!
-          working_directory: ~/app
           requires:
             - build
           filters:
@@ -50,7 +47,6 @@ workflows:
       - lambda/deploy:
           name: deploy-qa
           app: dosomething-graphql-qa # <--- replace with your app name!
-          working_directory: ~/app
           requires:
             - build
           filters:
@@ -59,7 +55,6 @@ workflows:
       - lambda/deploy:
           name: deploy-production
           app: dosomething-graphql # <--- replace with your app name!
-          working_directory: ~/app
           requires:
             - hold
           filters:
